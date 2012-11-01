@@ -6,7 +6,7 @@
 Stupeflix Factory documentation
 ===============================
 
-Stupeflix Factory allows you to integrate a feature complete Stupeflix Editor into your application flow.
+Stupeflix Factory allows you to integrate a feature complete `Stupeflix Editor <http://studio.stupeflix.com>`_ into your application flow.
 
 .. toctree::
    :maxdepth: 2
