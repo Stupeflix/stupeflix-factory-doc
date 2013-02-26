@@ -24,6 +24,14 @@ Stupeflix Factory works like a basic html form with ``action``, ``method`` and `
         * ``_parent``: Load the response into the factory parent frame. If there is no parent, this option behaves the same way as _self.
         * ``_top`` (default): Load the response into the factory top-level parent frame. If there is no parent, this option behaves the same way as _self.
 
+``video_id``
+    You may specify a ``video_id`` parameter to create an identified project or to re-open a previously created project.
+    The ``video_id`` value must be alphanumerical with a max length of 20.
+
+``definition``
+    Use the ``definition`` parameter to prepopulate the editor.
+    The ``definition`` value must be a valid json project definition. If submitted with a ``video_id`` parameter the definition will erase the associated project definition.
+
 | Add these parameters as GET parameters to your factory URL and open it into the window/iframe of your choice.
 | Stupeflix Factory will allow your user to compose, preview and export a single video.
 
@@ -49,6 +57,9 @@ Once your user's video is ready Stupeflix Factory will call your server back wit
     
 ``vres``
     The vertical (y) resolution of the exported video and thumbnail.
+
+``error``
+    If the factory encountered an error it will show up here.
 
 Static configuration
 --------------------
