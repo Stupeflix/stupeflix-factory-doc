@@ -4,6 +4,7 @@ Getting started
 
 A Stupeflix Factory demo is available at http://studio.stupeflix.com/factory/demo/.
 
+
 Editing sessions
 ----------------
 
@@ -15,11 +16,13 @@ Every editing session goes like this:
 2. Display the session's editing interface
 3. Get the session's output
 
+
 Configure a session
 -------------------
 
 | Each factory has its own https endpoint, in the form of ``https://studio.stupeflix.com/factory/FACTORY_ID/``.
 | To configure an editing session you need to http POST your configuration to this endpoint.
+
 
 Configuration parameters
 ````````````````````````
@@ -68,6 +71,7 @@ Stupeflix Factory works like basic html forms with ``action``, ``method`` and ``
     Your factory has been associated with a Stupeflix API key.
     Use your API key secret to authenticate your configuration call.
 
+
 Response
 ````````
 A successfull configuration call returns a response like this::
@@ -89,6 +93,7 @@ A successfull configuration call returns a response like this::
 ``edit_video_url``
     This editing session url, to display in an iframe.
 
+
 Additionnal configuration parameters
 ````````````````````````````````````
 
@@ -109,6 +114,7 @@ You can either do it by redirecting your user's browser to this url or by settin
 
     <iframe src="https://studio.stupeflix.com/factory/ABCDEF/edit/?video_id=ABCDEF%2F12345"
         width="960" height="600" scrolling="no" frameborder="no"></iframe>
+
 
 Get the session's output
 ------------------------
@@ -133,6 +139,7 @@ When your user's video is ready, Stupeflix Factory will call your server back, r
     
 ``vres``
     The vertical (y) resolution of the exported video and thumbnail.
+
 
 Static configuration
 --------------------
