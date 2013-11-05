@@ -11,7 +11,6 @@ Editing sessions
 Stupeflix Factory works with editing sessions. One editing session ends with one produced video.
 
 Every editing session goes like this:
-
 1. Configure a session
 2. Display the session's editing interface
 3. Get the session's output
@@ -20,8 +19,8 @@ Every editing session goes like this:
 Configure a session
 -------------------
 
-| Each factory has its own https endpoint, in the form of ``https://studio.stupeflix.com/factory/FACTORY_ID/``.
-| To configure an editing session you need to http POST your configuration to this endpoint.
+Each factory has its own https endpoint, in the form of ``https://studio.stupeflix.com/factory/FACTORY_ID/``.
+To configure an editing session you need to http POST your configuration to this endpoint.
 
 
 Configuration parameters
@@ -144,8 +143,8 @@ When your user's video is ready, Stupeflix Factory will call your server back, r
 Static configuration
 --------------------
 
-| Stupeflix Factory supports a number of server side configuration parameters.
-| For now these parameters can only be set by Stupeflix staff.
+Stupeflix Factory supports a number of server side configuration parameters.
+For now these parameters can only be set by Stupeflix staff.
 
 ``video_name``
     The default name for new videos, default is ``My Stupeflix Video``.
