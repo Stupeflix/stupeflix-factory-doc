@@ -11,16 +11,17 @@ Editing sessions
 Stupeflix Factory works with editing sessions. One editing session ends with one produced video.
 
 Every editing session goes like this:
-1. Configure a session
-2. Display the session's editing interface
-3. Get the session's output
+1. Configure/Create a session
+2. Display the editing interface
+3. Get the produced video info
 
 
 Configure a session
 -------------------
 
-Each factory has its own https endpoint, in the form of ``https://studio.stupeflix.com/factory/FACTORY_ID/``.
-To configure an editing session you need to http POST your configuration to this endpoint.
+POST your configuration to the following endpoint to create a session::
+
+    https://studio.stupeflix.com/factory/v3/
 
 
 Configuration parameters
@@ -42,18 +43,39 @@ Stupeflix Factory works like basic html forms with ``action``, ``method`` and ``
         * ``_parent``: Load the response into the factory parent frame. If there is no parent, this option behaves the same way as _self.
         * ``_top`` (default): Load the response into the factory top-level parent frame. If there is no parent, this option behaves the same way as _self.
 
+``video_name``
+    The name you want to give to your user's video (your user will be able to change it).
+
+``export_profile``
+    The video profile to use to export the video. It defines width, height, bitrate and codecs of the video to be produced. See `Stupeflix API supported formats <http://stupeflix-api.readthedocs.org/en/latest/resources/05_supported_coders_formats.html>`_ for a list of the available profiles. Default is ``youtube``.
+
 ``allow_preview``
     Defines if the factory allows the user to preview her video.
     Possible values are ``true`` (default) or ``false``.
 
 ``custom_css_url``
-    The URL of an extra css file to include into the factory html pages.
+    The URL of an extra css file to include into the factory html pages. This url must be served over https if you choose to display your factory using https.
     
 ``export_label``
     The label to display for the export button, default is ``Export``.
             
 ``rendering_label``
     The label to display on the video rendering screen (progress bar), default is ``Please wait while Stupeflix.com creates your video...``.
+
+``secret``
+    Your Stupeflix API key secret is needed to authenticate your configuration call.
+    Manage your Stupeflix API keys on the `Stupeflix Developers website <https://developer.stupeflix.com/>`_.
+
+Advanced configuration parameters
+`````````````````````````````````
+
+``remix``
+    Clone an existing editing session (the video in it may be exported or not).
+    ``remix`` must be a valid editing session identifier.
+
+``definition``
+    Use the ``definition`` parameter to prepopulate the editor.
+    The ``definition`` value must be a valid json project definition.
 
 ``custom_media_library_url``
     | The URL of a custom media library server. See :doc:`custom_media_library`.
@@ -62,61 +84,48 @@ Stupeflix Factory works like basic html forms with ``action``, ``method`` and ``
 ``custom_media_library_name``
     The name to display for the custom media library option.
 
-``definition``
-    Use the ``definition`` parameter to prepopulate the editor.
-    The ``definition`` value must be a valid json project definition.
-
-``secret``
-    Your factory has been associated with a Stupeflix API key.
-    Use your API key secret to authenticate your configuration call.
-
-
 Response
 ````````
-A successfull configuration call returns a response like this::
+A successfull configuration call returns a JSON response like this::
 
     {
-        "factory_id": "ABCDEF",
-        "video_id": "ABCDEF/12345"
-        "edit_video_url": "https://studio.stupeflix.com/factory/ABCDEF/edit/?video_id=ABCDEF%2F12345"
+        "video_id": "12345"
+        "video_name": "My Stupeflix Video",
+        "status": "editing",
+        "edit_video_url": "https://studio.stupeflix.com/factory/v3/edit/?video_id=ABCDEF%2F12345"
+        "created_at": "2013-12-17"
     }
-
-
-``factory_id``
-    Your Stupeflix Factory unique identifier.
 
 ``video_id``
     This editing session unique identifier.
+    As a session ends being a video, the session parameter is called ``video_id``.
     That's the identifier your have to associate with your users if you want to keep track of which videos were created by which users.
+
+``video_name``
+    The name of the created video.
+
+``status``
+    The status of the editing session, possible values are ``editing``, ``rendering`` or ``complete``.
 
 ``edit_video_url``
     This editing session url, to display in an iframe.
 
+``created_at``
+    The iso format utc datetime when the editing session was created.
 
-Additionnal configuration parameters
-````````````````````````````````````
 
-``video_id``
-    Resume an existing editing session.
-    ``video_id`` must be a valid editing session identifier.
-
-``remix``
-    Clone an existing editing session (the video in it may be exported or not).
-    ``remix`` must be a valid editing session identifier.
-
-    
-Display the session's editing interface
-----------------------------------------
+Display the editing interface
+-----------------------------
 
 Once you get an ``edit_video_url``, you have to display its content to your user.
 You can either do it by redirecting your user's browser to this url or by setting this url as an iframe src::
 
-    <iframe src="https://studio.stupeflix.com/factory/ABCDEF/edit/?video_id=ABCDEF%2F12345"
+    <iframe src="https://studio.stupeflix.com/factory/v3/edit/?video_id=ABCDEF%2F12345"
         width="960" height="600" scrolling="no" frameborder="no"></iframe>
 
 
-Get the session's output
-------------------------
+Get the produced video info
+---------------------------
 
 When your user's video is ready, Stupeflix Factory will call your server back, respecting your 
 ``action``, ``method`` and ``target`` configuration with the following data:
@@ -140,19 +149,9 @@ When your user's video is ready, Stupeflix Factory will call your server back, r
     The vertical (y) resolution of the exported video and thumbnail.
 
 
-Static configuration
---------------------
+Get a session' status
+---------------------
 
-Stupeflix Factory supports a number of server side configuration parameters.
-For now these parameters can only be set by Stupeflix staff.
+Session' statuses are available anytime at the following endpoint, passing in ``video_id`` as your session identifier::
 
-``video_name``
-    The default name for new videos, default is ``My Stupeflix Video``.
-
-``export_profile``
-    The video format to use to export the user's video. See `Stupeflix API supported formats <http://stupeflix-api.readthedocs.org/en/latest/resources/05_supported_coders_formats.html>`_.
-            
-``upload_target``
-    | Where to upload the exported video. 
-    | Stupeflix Factory supports Youtube, Facebook, Dailymotion, S3, FTP, HTTP POST and HTTP PUT uploads.
-    
+    https://studio.stupeflix.com/factory/v3/status/?video_id=12345
