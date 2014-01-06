@@ -11,6 +11,7 @@ Editing sessions
 Stupeflix Factory works with editing sessions. One editing session ends with one produced video.
 
 Every editing session goes like this:
+
 1. Configure/Create a session
 2. Display the editing interface
 3. Get the produced video info
@@ -92,7 +93,7 @@ A successfull configuration call returns a JSON response like this::
         "video_id": "12345"
         "video_name": "My Stupeflix Video",
         "status": "editing",
-        "edit_video_url": "https://studio.stupeflix.com/factory/v3/edit/?video_id=ABCDEF%2F12345"
+        "edit_video_url": "https://studio.stupeflix.com/factory/v3/edit/?video_id=12345"
         "created_at": "2013-12-17"
     }
 
@@ -120,7 +121,7 @@ Display the editing interface
 Once you get an ``edit_video_url``, you have to display its content to your user.
 You can either do it by redirecting your user's browser to this url or by setting this url as an iframe src::
 
-    <iframe src="https://studio.stupeflix.com/factory/v3/edit/?video_id=ABCDEF%2F12345"
+    <iframe src="https://studio.stupeflix.com/factory/v3/edit/?video_id=12345"
         width="960" height="600" scrolling="no" frameborder="no"></iframe>
 
 
