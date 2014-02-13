@@ -93,7 +93,7 @@ A successfull configuration call returns a JSON response like this::
         "video_id": "12345"
         "video_name": "My Stupeflix Video",
         "status": "editing",
-        "edit_video_url": "https://studio.stupeflix.com/factory/v3/edit/?video_id=12345"
+        "edit_url": "https://studio.stupeflix.com/factory/v3/edit/?video_id=12345"
         "created_at": "2013-12-17"
     }
 
@@ -108,7 +108,7 @@ A successfull configuration call returns a JSON response like this::
 ``status``
     The status of the editing session, possible values are ``editing``, ``rendering`` or ``complete``.
 
-``edit_video_url``
+``edit_url``
     This editing session url, to display in an iframe.
 
 ``created_at``
@@ -118,7 +118,7 @@ A successfull configuration call returns a JSON response like this::
 Display the editing interface
 -----------------------------
 
-Once you get an ``edit_video_url``, you have to display its content to your user.
+Once you get an ``edit_url``, you have to display its content to your user.
 You can either do it by redirecting your user's browser to this url or by setting this url as an iframe src::
 
     <iframe src="https://studio.stupeflix.com/factory/v3/edit/?video_id=12345"
