@@ -70,8 +70,12 @@ Stupeflix Factory works like basic html forms with ``action``, ``method`` and ``
 Advanced configuration parameters
 `````````````````````````````````
 
+``video_id``
+    Re-configure an existing non-complete editing session. Supports all standard configuration parameters except for ``export_profile``.
+    ``video_id`` must be a valid non-complete editing session identifier.
+
 ``remix``
-    Clone an existing editing session (the video in it may be exported or not).
+    Clone an existing editing session.
     ``remix`` must be a valid editing session identifier.
 
 ``definition``
