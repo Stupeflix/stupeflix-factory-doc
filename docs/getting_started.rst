@@ -63,6 +63,11 @@ Stupeflix Factory works like basic html forms with ``action``, ``method`` and ``
 ``rendering_label``
     The label to display on the video rendering screen (progress bar), default is ``Please wait while Stupeflix.com creates your video...``.
 
+``store_type``
+    Either ``volatile`` or ``persistent``. Defines how this session produced video will be stored. Default is ``volatile``.
+        * Volatile files are stored for a week on Stupeflix servers. 
+        * `Persistent files <https://stupeflix-tasks-api.readthedocs.org/en/latest/api.html#v2-storage-api>`_ are hosted on Amazon S3 and delivered through Amazon CloudFront CDN. Additional costs apply to persistent files, `please read our pricing <https://developer.stupeflix.com/pricing/#hosting/>`_.
+
 ``secret``
     Your Stupeflix API key secret is needed to authenticate your configuration call.
     Manage your Stupeflix API keys on the `Stupeflix Developers website <https://developer.stupeflix.com/>`_.
