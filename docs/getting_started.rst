@@ -159,8 +159,8 @@ When your user's video is ready, Stupeflix Factory will call your server back, r
     The vertical (y) resolution of the exported video and thumbnail.
 
 
-Get a session' status
----------------------
+Get the status of a session
+---------------------------
 
 Session' statuses are available anytime at the following endpoint, passing in ``video_id`` as your session identifier::
 
