@@ -59,6 +59,9 @@ Stupeflix Factory works like basic html forms with ``action``, ``method`` and ``
     
 ``export_label``
     The label to display for the export button, default is ``Export``.
+
+``confirm_export_label``
+    If defined, asks the user to confirm her decision to export and exit the editor by displaying ``confirm_export_label`` in a confirm box. Undefined by default.
             
 ``rendering_label``
     The label to display on the video rendering screen (progress bar), default is ``Please wait while Stupeflix.com creates your video...``.
