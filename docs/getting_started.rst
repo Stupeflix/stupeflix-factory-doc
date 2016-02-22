@@ -50,6 +50,9 @@ Stupeflix Factory works like basic html forms with ``action``, ``method`` and ``
 ``export_profile``
     The video profile to use to export the video. It defines width, height, bitrate and codecs of the video to be produced. See `Stupeflix API supported formats <http://stupeflix-api.readthedocs.org/en/latest/resources/05_supported_coders_formats.html>`_ for a list of the available profiles. Default is ``youtube``.
 
+``xml_skin``
+    The Stupeflix XML you want to wrap the user's video into. Useful to add pre-roll, post-roll or watermarking to the produced videos. The provided XML must contain a ``{{user_movie}}`` placeholder to show the user's video position. `XML example <https://stupeflix-tasks-api.readthedocs.org/en/latest/tasks.html#video-create>`_.
+
 ``allow_preview``
     Defines if the factory allows the user to preview her video.
     Possible values are ``true`` (default) or ``false``.
